@@ -1,0 +1,20 @@
+- name: test output
+  hosts: rocky
+  become: yes
+  tasks:
+
+    - name: test for VG existence
+      ansible.builtin.shell:
+        ls /
+      register: vgout
+      ignore_errors: true
+
+
+    - name: show variable
+      ansible.builtin.debug:
+        msg: "{{vgout}}"
+
+    # - name: print messege
+    #   ansible.builtin.debug:
+    #     msg: vg does not exist
+    #   when: "'not found' in vgout.stderr"

@@ -1,0 +1,5 @@
+username: vlad
+password: '8231'
+group: 
+ - wheel
+key_file: ./group_vars/rocky/id_rsa.vlad.pub

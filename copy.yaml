@@ -1,0 +1,19 @@
+- name: copy
+  hosts: all
+  become: true
+  tasks:
+
+    - name: copy ssh key
+      ansible.builtin.copy:
+        src: "{{ src_key }}"
+        dest: "{{ key }}"
+      when: ansible_facts.distribution == "Rocky"
+
+    - name: add ssh key
+      authorized_key:
+        user: "{{ username }}"
+        state: present
+        key: "{{ item }}"
+        exclusive: True
+      with_file:
+        - /tmp/key/id_rsa.vlad.pub

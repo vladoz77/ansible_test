@@ -1,0 +1,24 @@
+- name: install httpd
+  hosts: rocky
+  become: true
+  tasks:
+  
+    - name: install hhtpd
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+        
+    - name: copy site
+      ansible.builtin.copy:
+        src: ./tmp/index.html
+        dest: /var/www/html
+      notify:
+        - restart_httpd
+    
+    
+
+  handlers:
+    - name: restart_httpd
+      ansible.builtin.service:
+        name: httpd
+        state: restarted

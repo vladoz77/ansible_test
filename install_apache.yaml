@@ -1,0 +1,22 @@
+- name: install apache
+  hosts: all
+  become: yes
+  tasks:
+    
+    - name: install apache
+      ansible.builtin.apt:
+        name: "{{ soft }}"
+        state: present
+        
+
+    - name: open port
+      community.general.ufw:
+        name: Apache Full
+        rule: allow
+        
+        
+    - name: run servise
+      ansible.builtin.service:
+        name: "apache2"
+        state: started   
+        enabled: yes

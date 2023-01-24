@@ -1,0 +1,15 @@
+- name: test block
+  hosts: all
+  become: true
+  tasks:
+   - name: test block
+     block:
+       - name: install httpd
+         ansible.builtin.yum:
+          name:
+            - httpd
+          state: absent
+       - name: send messege
+         ansible.builtin.debug:
+          msg: httpd delete
+     when: ansible_facts.distribution == "Rocky" 

@@ -1,0 +1,15 @@
+---
+- name: user loop
+  hosts: all
+  become: yes
+  vars_files: ./user.yaml
+  tasks:
+    - name: create user for ubuntu
+      ansible.builtin.user:
+        name: "{{item.name}}"
+        password: "{{ item.password | password_hash('sha512') }}"
+        groups: "{{item.groups}}"
+        shell: /bin/bash
+        state: present
+      loop: "{{user}}"
+      when: ansible_facts.distribution == "Ubuntu"

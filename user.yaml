@@ -1,0 +1,12 @@
+user:
+  - name: anna
+    password: anna
+    groups:
+      - sudo
+      - ssh
+      
+  - name: boris
+    password: boris
+    groups: 
+      - users
+      - ubuntu

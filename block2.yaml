@@ -1,0 +1,25 @@
+- name: test block 2
+  hosts: all
+  become: true
+  tasks:
+    
+    - name: block
+      block:
+        - name: del file
+          ansible.builtin.shell:
+            rm /tmp/test
+        - name: messege
+          ansible.builtin.debug:
+            msg: file delete
+      rescue: 
+        - name: ceate file
+          ansible.builtin.file:
+            dest: /tmp/test
+            state: touch
+        - name: messege
+          ansible.builtin.debug:
+            msg: file ccreate
+      always:
+        - name: always messege
+          ansible.builtin.debug:
+            msg: success

@@ -1,0 +1,12 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook": [
+            "file:///home/vlad/ansible/install_httpd.yaml",
+            "file:///home/vlad/ansible/create_user.yaml",
+            "file:///home/vlad/ansible/baseprovision%20.yaml",
+            "file:///home/vlad/ansible/base_provision.yaml",
+            "file:///home/vlad/ansible/test2.yaml",
+            "file:///home/vlad/ansible/loopapt.yaml"
+        ]
+    }
+}
