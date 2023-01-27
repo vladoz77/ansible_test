@@ -1,0 +1,27 @@
+---
+- name: find config
+  hosts: localhost
+  become: true
+  tasks:
+    - name: find ansible.cfg
+      ansible.builtin.find:
+        paths: "/etc"
+        patterns:
+          - 'hosts'
+        recurse: true
+      register: output
+
+    # - ansible.builtin.debug:
+    #     var: item.path
+    #   loop: "{{output.files}}"
+      
+   
+
+    - name: edit file
+      ansible.builtin.blockinfile:
+        path: "{{item.path}}"
+        insertafter: "The following lines are desirable for IPv6 capable hosts"
+        block: |
+          8.8.8.8
+          1.1.1.1
+      loop: "{{output.files}}"
