@@ -2,3 +2,4 @@ soft:
  - nmap
  - curl
  - apache2
+ - rsync

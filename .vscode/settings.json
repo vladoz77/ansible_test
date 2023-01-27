@@ -6,7 +6,8 @@
             "file:///home/vlad/ansible/baseprovision%20.yaml",
             "file:///home/vlad/ansible/base_provision.yaml",
             "file:///home/vlad/ansible/test2.yaml",
-            "file:///home/vlad/ansible/loopapt.yaml"
+            "file:///home/vlad/ansible/loopapt.yaml",
+            "file:///home/vlad/ansible/fail1.yaml"
         ]
     }
 }

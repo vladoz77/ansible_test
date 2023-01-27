@@ -1,0 +1,17 @@
+---
+- name: test fail
+  hosts: srv
+  become: true
+  tasks:
+    - name: script
+      ansible.builtin.shell:
+        echo "hello world"
+      register: msg
+      failed_when: "'world' in msg.stdout"
+
+    - name: debug
+      ansible.builtin.debug:
+        var: msg
+
+    
+            
