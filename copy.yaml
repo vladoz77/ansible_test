@@ -1,19 +1,31 @@
-- name: copy
-  hosts: all
-  become: true
-  tasks:
+---
+ - name: file copy modules
+   hosts: all
+   become: yes
+   tasks:
+      - name: copy file to 
+        ansible.builtin.copy:
+          src: /etc/hosts
+          dest: /tmp/
 
-    - name: copy ssh key
-      ansible.builtin.copy:
-        src: "{{ src_key }}"
-        dest: "{{ key }}"
-      when: ansible_facts.distribution == "Rocky"
+      - name: add lines to file
+        ansible.builtin.blockinfile:
+          path: /etc/resolv.conf
+          block: |
+            nameserver 8.8.8.8
+            nameserver 8.8.4.4
+          state: present
 
-    - name: add ssh key
-      authorized_key:
-        user: "{{ username }}"
-        state: present
-        key: "{{ item }}"
-        exclusive: True
-      with_file:
-        - /tmp/key/id_rsa.vlad.pub
+      - name: verify checksum file
+        ansible.builtin.stat:
+          path: /tmp/hosts
+          checksum_algorithm: md5
+        register: result
+        
+      - ansible.builtin.debug:
+          var: result.stat.checksum
+
+      - name: fetch
+        ansible.builtin.fetch:
+          src: /etc/resolv.conf
+          dest: /tmp/  
