@@ -1,0 +1,49 @@
+---
+- name: copy conf to local
+  hosts: all
+  become: true
+  tasks:
+    - name: instal vsftpd
+      ansible.builtin.apt:
+        name:
+          - vsftpd
+        state: present
+
+    - name: fetch file
+      ansible.builtin.fetch:
+        src: /etc/vsftpd.conf
+        dest: /tmp/vsftpd.j2
+        flat: true
+
+- name: modify files
+  hosts: localhost
+  become: true
+  tasks:
+    - name: modify file conf
+      ansible.builtin.lineinfile:
+        path: /tmp/vsftpd.j2
+        line: '# written on {{ ansible_hostname }}'
+
+- name: finish it
+  hosts: all
+  become: true
+  tasks:
+    - name: use template
+      ansible.builtin.template:
+        src: /tmp/vsftpd.j2
+        dest: /etc/vsftpd.conf
+    - name: start it
+      ansible.builtin.service:
+        name: vsftpd
+        state: started
+    - name: firewall
+      community.general.ufw:
+        from_port: '10090'
+        to_port: '10100'
+        rule: allow
+        state: enabled
+      
+
+   
+
+        
