@@ -1,6 +1,6 @@
 soft:
  - nmap
  - curl
- - apache2
+ - nginx
  - rsync
  

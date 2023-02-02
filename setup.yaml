@@ -1,8 +1,7 @@
 ---
 - name: setup
-  hosts: rocky
+  hosts: all
   become: true
   tasks:
     - ansible.builtin.debug:
-        var: ansible_facts
-      
+        var: playbook_dir

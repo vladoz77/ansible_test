@@ -1,0 +1,6 @@
+---
+- name: test role
+  hosts: srv
+  become: true
+  roles:
+    - role: myrole

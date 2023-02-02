@@ -2,12 +2,15 @@
 - name: copy conf to local
   hosts: all
   become: true
+  
+    
   tasks:
     - name: instal vsftpd
       ansible.builtin.apt:
         name:
           - vsftpd
         state: present
+      when: ansible_facts.distribution == "Ubuntu"
 
     - name: fetch file
       ansible.builtin.fetch:

@@ -1,0 +1,5 @@
+{% for host in groups ['all'] %}
+   {{hostvars[host]['ansible_facts']['distribution']}}
+   {{hostvars[host]['ansible_facts']['distribution_release']}} 
+   {{hostvars[host]['ansible_facts']['all_ipv4_addresses'] }}
+{% endfor %}

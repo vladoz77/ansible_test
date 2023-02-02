@@ -7,7 +7,9 @@
             "file:///home/vlad/ansible/base_provision.yaml",
             "file:///home/vlad/ansible/test2.yaml",
             "file:///home/vlad/ansible/loopapt.yaml",
-            "file:///home/vlad/ansible/fail1.yaml"
-        ]
+            "file:///home/vlad/ansible/fail1.yaml",
+            "file:///home/vlad/ansible/magic.yaml"
+        ],
+        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": "file:///home/vlad/ansible/roles/nginx/tasks/main.yml"
     }
 }

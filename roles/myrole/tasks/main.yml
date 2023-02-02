@@ -1,0 +1,9 @@
+---
+# tasks file for myrole
+- name: run template
+  ansible.builtin.template:
+      src: templates/templ.j2
+      dest: /tmp/newtempl
+      # owner: root
+      # group: root
+      # mode: 0644

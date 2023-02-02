@@ -1,0 +1,12 @@
+---
+- name: teplate test1
+  hosts: all
+  become: true
+  tasks:
+    - name: run template
+      ansible.builtin.template:
+        src: hosts.j2
+        dest: /tmp/newhost
+        # owner: root
+        # group: root
+        # mode: 0644
