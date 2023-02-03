@@ -1,0 +1,7 @@
+- name: open port
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: enabled
+    permanent: true
+    immediate: true
+  loop: "{{ firewall_service }}"

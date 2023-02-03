@@ -1,0 +1,29 @@
+---
+ - name: test import tasks
+   hosts: all
+   become: true
+   tasks:
+      - name: install appach on Ubuntu
+        ansible.builtin.import_tasks:
+          install_apache.yaml
+        notify: service start
+        when: ansible_facts.distribution == "Ubuntu"
+      
+      - name: install apache on Rocky
+        import_tasks:
+          install_httpd.yaml
+        notify: service start   
+        when: ansible_facts.distribution == "Rocky"
+
+      
+   
+   handlers:
+    - name: service start
+      ansible.builtin.service:
+        name: "{{ service }}"
+        enabled: true
+        state: started
+
+      
+
+     
