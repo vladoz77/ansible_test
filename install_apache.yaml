@@ -1,23 +1,22 @@
-- name: install apache
-  hosts: all
-  become: yes
-  tasks:
-    - block:
-        - name: install nginx
+# - name: install apache
+#   hosts: all
+#   become: yes
+#   tasks:
+#     - block:
+        - name: install on apache2 om Ubuntu
           ansible.builtin.apt:
-            name: nginx
+            name: "{{ package }}"
             state: present
             
+       
+            
+        # - name: run servise  apache2
+        #   ansible.builtin.service:
+        #     name: "{{ service }}"
+        #     state: started   
+        #     enabled: yes
 
-        - name: open port
-          community.general.ufw:
-            name: Nginx HTTP
-            rule: allow
-            
-            
-        - name: run servise
-          ansible.builtin.service:
-            name: "nginx"
-            state: started   
-            enabled: yes
-      when: ansible_facts.distribution == "Ubuntu"      
+        - name: open port 
+          ansible.builtin.include_tasks:
+            ufw.yaml
+      # when: ansible_facts.distribution == "Ubuntu"      

@@ -3,28 +3,28 @@
   hosts: all
   become: true  
   pre_tasks:
-    - block:
-        - name: unninstal httpd
-          ansible.builtin.service:
-            name: nginx
-            state: stopped
-            enabled: no
+    # - block:
+    #     - name: unninstal httpd
+    #       ansible.builtin.service:
+    #         name: nginx
+    #         state: stopped
+    #         enabled: no
           
-        - name: unninstal packages
-          ansible.builtin.apt:
-            name:
-              - nginx
-            purge: yes
+    #     - name: unninstal packages
+    #       ansible.builtin.apt:
+    #         name:
+    #           - nginx
+    #         purge: yes
 
         
 
 
-        - name: update packages
-          ansible.builtin.apt:
-            name: '*'
-            state: latest
+    #     - name: update packages
+    #       ansible.builtin.apt:
+    #         name: '*'
+    #         state: latest
             
-      when: ansible_facts['distribution'] == "Ubuntu"
+    #   when: ansible_facts['distribution'] == "Ubuntu"
   roles:
     - role: nginx
   

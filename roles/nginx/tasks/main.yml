@@ -17,18 +17,18 @@
   ansible.builtin.template:
     src: templates/nginx_site.conf.j2
     dest: /etc/nginx/sites-enabled/nginx_site.conf
-  notify: start nginx
+  notify: restart nginx
 
-- name: open port
+- name: open port ubuntu
   community.general.ufw:
     name: Nginx HTTP
     rule: allow
 
-- name: run servise
-  ansible.builtin.service:
-    name: "nginx"
-    state: started   
-    enabled: yes
+# - name: run servise
+#   ansible.builtin.service:
+#     name: "nginx"
+#     state: started   
+#     enabled: yes
   
 
 

@@ -1,24 +1,40 @@
-- name: install httpd
-  hosts: rocky
-  become: true
-  tasks:
+# - name: install httpd
+#   hosts: all
+#   become: true
+#   tasks:
   
-    - name: install hhtpd
+    - name: install httpd on Rocky
       ansible.builtin.yum:
-        name: httpd
+        name: "{{ package }}"
         state: present
-        
-    - name: copy site
-      ansible.builtin.copy:
-        src: ./tmp/index.html
-        dest: /var/www/html
-      notify:
-        - restart_httpd
+      
+    # - name: copy site
+    #   ansible.builtin.copy:
+    #     src: ./tmp/index.html
+    #     dest: /var/www/html
+    #   notify:
+    #     - restart_httpd
     
-    
+    # - name: service start
+    #   ansible.builtin.service:
+    #     name: "{{ service }}"
+    #     enabled: true
+    #     state: started
 
-  handlers:
-    - name: restart_httpd
-      ansible.builtin.service:
-        name: httpd
-        state: restarted
+    
+    - name: open port 
+      ansible.builtin.include_tasks:
+        firewalld.yaml
+    
+    # - name: open port
+    #   ansible.posix.firewalld:
+    #     service: "{{ firewall_service }}"
+    #     state: enabled
+    #     permanent: true
+
+  # handlers:
+  #   - name: start httpd
+  #     ansible.builtin.service:
+  #       name: httpd
+  #       state: started
+  #       enabled: true

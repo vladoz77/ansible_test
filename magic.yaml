@@ -1,20 +1,21 @@
 ---
 - name: magic vars demo
-  hosts: '192.168.56.3'
-  gather_facts: false
+  hosts: all
+  
   tasks:
     - name: magic variable
       ansible.builtin.debug:
         var: "{{ item }}"
       loop:
-        - ansible_config_file
-        - playbook_dir
-        - inventory_dir
-        - inventory_file
-        - ansible_check_mode
-        - ansible_diff_mode
-        - ansible_forks
-        - ansible_verbosity
-        - inventory_hostname
+        # - ansible_config_file
+        # - playbook_dir
+        # - inventory_dir
+        # - inventory_file
+        # - ansible_check_mode
+        # - ansible_diff_mode
+        # - ansible_forks
+        # - ansible_verbosity
+        # - inventory_hostname
         - ansible_play_hosts
-        - ansible_version
+        # - ansible_version
+        # - ansible_os_family
