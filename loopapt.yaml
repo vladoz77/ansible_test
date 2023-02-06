@@ -1,16 +1,11 @@
----
-- name: loop test
-  hosts: all
-  become: true
-  
-  tasks:
+
     - name: instal soft
       ansible.builtin.apt:
-        name: "{{soft}}"
+        name: "{{ soft }}"
         state: present
         update_cache: true
       
-      when: ansible_facts.distribution == "Ubuntu"   
+
       
      
        

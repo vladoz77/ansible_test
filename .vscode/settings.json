@@ -11,6 +11,9 @@
             "file:///home/vlad/ansible/magic.yaml",
             "file:///home/vlad/ansible/ufw.yaml"
         ],
-        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": "file:///home/vlad/ansible/roles/nginx/tasks/main.yml"
+        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": [
+            "file:///home/vlad/ansible/roles/nginx/tasks/main.yml",
+            "file:///home/vlad/ansible/loopdnf.yaml"
+        ]
     }
 }

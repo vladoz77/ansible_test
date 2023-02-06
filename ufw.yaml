@@ -1,6 +1,0 @@
- 
- - name: ubuntu
-   community.general.ufw:
-      name: "{{ rule_name }}"
-      rule: allow
-      state: enabled

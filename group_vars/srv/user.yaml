@@ -1,5 +1,0 @@
-username: vlad
-password: '8231'
-group: 
- - sudo
-key_file: "{{ lookup('file', '/home/vlad/.ssh/id_rsa.pub') }}"

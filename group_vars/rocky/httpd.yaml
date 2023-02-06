@@ -1,5 +1,0 @@
-package: httpd
-service: httpd
-firewall_service: 
-    - https
-    - http
