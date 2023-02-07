@@ -1,0 +1,11 @@
+---  
+   - name: Upgrade all packages
+     ansible.builtin.yum:
+        name: '*'
+        state: latest
+   
+   - name: instal soft
+     ansible.builtin.yum:
+        name: "{{ soft }}"
+        state: present
+       

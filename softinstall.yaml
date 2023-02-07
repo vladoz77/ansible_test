@@ -1,0 +1,29 @@
+---
+- name: install soft on Ubuntu
+  block:
+    - name: install update
+      ansible.builtin.apt:
+        name: '*'
+        state: latest
+
+    - name: install soft on ubuntu
+      ansible.builtin.apt:
+        name: "{{ soft }}"
+        update_cache: true
+  when: ansible_facts.distribution == "Ubuntu"
+
+- name: install soft on rocky
+  block:
+    - name: install update
+      ansible.builtin.yum:
+        name: '*'
+        state: latest
+      
+    - name: install soft
+      ansible.builtin.yum:
+        name: "{{ soft }}"
+        state: present
+  when: ansible_facts.distribution == "Rocky"
+    
+
+  

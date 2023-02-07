@@ -1,0 +1,16 @@
+- name: firewall for ubuntu
+  community.general.ufw:
+     name: "{{ item }}"
+     rule: allow
+     state: enabled
+  loop: "{{ firewall_service }}"
+  when: ansible_facts.distribution == "Ubuntu"
+
+- name: firewall for "Rocky"
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: enabled
+    permanent: true
+    immediate: true
+  loop: "{{ firewall_service }}"  
+  when: ansible_facts.distribution == "Rocky" 

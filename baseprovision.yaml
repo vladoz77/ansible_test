@@ -1,0 +1,39 @@
+---
+ - name: baseprovision
+   hosts: all
+   become: true
+   tasks:
+      - name: add user and ssh key to Ubuntu
+        ansible.builtin.import_tasks:
+          useradd.yaml
+        when: ansible_facts.distribution == "Ubuntu"
+
+      - name: add user and ssh key to Ubuntu
+        ansible.builtin.import_tasks:
+          useradd.yaml
+        when: ansible_facts.distribution == "Rocky" 
+      
+      
+      - name: add soft 
+        ansible.builtin.import_tasks:
+          softinstall.yaml
+        notify: service_restart
+      
+      - name: add rules
+        ansible.builtin.import_tasks:
+          firewall.yaml
+   
+      
+          
+
+   handlers:
+      - name: service_restart
+        ansible.builtin.service:
+          name: "{{ item }}"
+          state: started
+          enabled: true
+        loop: "{{service}}"
+      
+    
+
+    
